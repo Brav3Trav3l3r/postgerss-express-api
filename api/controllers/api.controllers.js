@@ -37,9 +37,9 @@ export const deleteUser = async (req, res) => {
 
 export const editUser = async (req, res) => {
   const id = req.params.id;
-  const detail = req.body;
+  const {name, email} = req.body;
   try {
-    const resp = await editItem(id, detail);
+    const resp = await editItem(id, name, email);
     res.status(200).json(resp);
   } catch (error) {
     res.status(500).send(error);

@@ -43,11 +43,11 @@ export const deleteItem = (id) => {
   });
 };
 
-export const editItem = (id, detail) => {
+export const editItem = (id, name, email) => {
   return new Promise((resolve, reject) => {
     pool.query(
-      "UPDATE users SET email = $2.email, name = $2.name WHERE id = $1",
-      [id, detail],
+      "UPDATE users SET email = $3, name = $2 WHERE id = $1",
+      [id, name, email],
       (error, results) => {
         if (error) {
           reject(error);
