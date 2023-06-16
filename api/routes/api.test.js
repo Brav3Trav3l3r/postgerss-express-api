@@ -58,7 +58,7 @@ test('PUT "/users/:id" edit a user', async () => {
   expect(res.body).toEqual("User modified with id: 1");
 });
 
-test('POST "/users add a new user"', async () => {
+test('POST "/users add new user"', async () => {
   const res = await requestWithSupertest.post("/users").send({
     name: "Sunny",
     email: "sunnyleone@hotmail.com",
