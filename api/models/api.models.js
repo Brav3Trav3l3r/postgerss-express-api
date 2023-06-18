@@ -9,16 +9,23 @@ const pool = new Pool({
   post: 5432,
 });
 
-export const listUsers = () => {
-  return new Promise((resolve, reject) => {
-    pool.query("SELECT * FROM users ORDER BY id", (error, results) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(results.rows);
-      }
-    });
-  });
+export const listUsers = async () => {
+  // return new Promise((resolve, reject) => {
+  //   pool.query("SELECT * FROM users ORDER BY id", (error, results) => {
+  //     if (error) {
+  //       reject(error);
+  //     } else {
+  //       resolve(results.rows);
+  //     }
+  //   });
+  // });
+
+  try {
+    const result = await pool.query("SELECT * FROM users ORDER BY id");
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const findUser = (id) => {
