@@ -28,15 +28,22 @@ export const listUsers = async () => {
   }
 };
 
-export const findUser = (id) => {
-  return new Promise((resolve, reject) => [
-    pool.query("SELECT * FROM users WHERE id = $1", [id], (error, results) => {
-      if (error) {
-        reject(error);
-      }
-      resolve(results.rows);
-    }),
-  ]);
+export const findUser = async (id) => {
+  // return new Promise((resolve, reject) => [
+  //   pool.query("SELECT * FROM users WHERE id = $1", [id], (error, results) => {
+  //     if (error) {
+  //       reject(error);
+  //     }
+  //     resolve(results.rows);
+  //   }),
+  // ]);
+
+  try {
+    const results = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+    return results.rows;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const deleteItem = (id) => {
