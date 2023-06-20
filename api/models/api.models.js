@@ -10,16 +10,7 @@ const pool = new Pool({
 });
 
 export const listUsers = async () => {
-  // return new Promise((resolve, reject) => {
-  //   pool.query("SELECT * FROM users ORDER BY id", (error, results) => {
-  //     if (error) {
-  //       reject(error);
-  //     } else {
-  //       resolve(results.rows);
-  //     }
-  //   });
-  // });
-
+  
   try {
     const result = await pool.query("SELECT * FROM users ORDER BY id");
     return result.rows;
